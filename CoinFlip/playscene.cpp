@@ -5,6 +5,8 @@
 #include "mypushbutton.h"
 #include <QTimer>
 #include <QLabel>
+#include "mycoin.h"
+#include "dataconfig.h"
 
 //PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
 //{
@@ -65,6 +67,56 @@ PlayScene::PlayScene(int levelNum)
     label->setFont(font);
     label->setText( str1);
     label->setGeometry(30, this->height() - 50,130, 50);
+
+    //初始化每个关卡的二维数组
+    dataConfig config;
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            this->gameArray[i][j]=config.mData[this->levelIndex][i][j];
+        }
+    }
+
+    //显示金币的背景图
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            //绘制背景图片
+            QPixmap pix=QPixmap(":/res/BoardNode.png");
+            QLabel *label=new QLabel;
+            label->setGeometry(0,0,50,50);
+            label->setPixmap(pix);
+            label->setParent(this);
+            label->move(57+i*50,200+j*50);
+
+            //创建金币
+            QString str;
+            if(this->gameArray[i][j]==1)
+            {
+                str=":/res/Coin0001.png";
+            }
+            else
+            {
+                str=":/res/Coin0008.png";
+            }
+
+            MyCoin *coin=new MyCoin(str);
+            coin->setParent(this);
+            coin->move(59+i*50,204+j*50);
+
+            //给金币的属性赋值
+            coin->posX=i;
+            coin->posY=j;
+            coin->flag=this->gameArray[i][j]; //  1正面 0反面
+
+            //点击金币进行翻转
+            connect(coin,&MyCoin::clicked,[=](){
+                coin->changeFlag();
+            });
+        }
+    }
 }
 
 void PlayScene::paintEvent(QPaintEvent *)
