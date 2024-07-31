@@ -218,8 +218,10 @@ Makefile: ../CoinFlip/CoinFlip.pro C:/Qt/Qt5.9.3/5.9.3/mingw53_32/mkspecs/win32-
 		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/mkspecs/features/lex.prf \
 		../CoinFlip/CoinFlip.pro \
 		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/qtmain.prl \
+		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Multimedia.prl \
 		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Widgets.prl \
 		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Gui.prl \
+		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Network.prl \
 		C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ..\CoinFlip\CoinFlip.pro -spec win32-g++
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -379,8 +381,10 @@ C:/Qt/Qt5.9.3/5.9.3/mingw53_32/mkspecs/features/yacc.prf:
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/mkspecs/features/lex.prf:
 ../CoinFlip/CoinFlip.pro:
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/qtmain.prl:
+C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Multimedia.prl:
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Widgets.prl:
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Gui.prl:
+C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Network.prl:
 C:/Qt/Qt5.9.3/5.9.3/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\CoinFlip\CoinFlip.pro -spec win32-g++

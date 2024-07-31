@@ -8,6 +8,7 @@
 #include "mycoin.h"
 #include "dataconfig.h"
 #include <QPropertyAnimation>
+#include <QSound>
 
 //PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
 //{
@@ -43,6 +44,13 @@ PlayScene::PlayScene(int levelNum)
         this->close();
     });
 
+    //翻金币音效
+    QSound *flipSound = new QSound(":/res/ConFlipSound.wav",this);
+    //胜利按钮音效
+    QSound *winSound = new QSound(":/res/LevelWinSound.wav",this);
+    //返回按钮音效
+    QSound *backSound = new QSound(":/res/BackButtonSound.wav",this);
+
     //返回按钮
     MyPushButton * backBtn = new MyPushButton(":/res/BackButton.png" , ":/res/BackButtonSelected.png");
     backBtn->setParent(this);
@@ -50,6 +58,8 @@ PlayScene::PlayScene(int levelNum)
 
     //点击返回
     connect(backBtn,&MyPushButton::clicked,[=](){
+        //点击返回按钮后，播放该音效
+        backSound->play();
         qDebug() << "翻金币场景中：点击了返回按钮";
 
         QTimer::singleShot(500,this,[=](){
@@ -124,6 +134,9 @@ PlayScene::PlayScene(int levelNum)
 
             //点击金币进行翻转
             connect(coin,&MyCoin::clicked,[=](){
+                //在翻金币时播放 翻金币音效
+                flipSound->play();
+
                 //在翻转金币的时候禁用其他按钮
                 for(int i = 0 ; i < 4; i++)
                 {
@@ -181,6 +194,8 @@ PlayScene::PlayScene(int levelNum)
                         }
                     }
                     if(this->isWin==true){
+                        //胜利时，播放胜利音效
+                        winSound->play();
                         //this->backBtn->m_flag = true;
                         //胜利了
                         qDebug() << "胜利了";

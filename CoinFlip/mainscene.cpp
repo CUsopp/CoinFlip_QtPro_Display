@@ -4,6 +4,7 @@
 #include "mypushbutton.h"
 #include <QDebug>
 #include <QTimer>
+#include <QSound>
 
 MainScene::MainScene(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,9 @@ MainScene::MainScene(QWidget *parent) :
         this->close();
     });
 
+    //准备开始按钮音效
+    QSound * startSound = new QSound(":/res/TapButtonSound.wav",this);
+
     //开始按钮
     MyPushButton * startBtn = new MyPushButton(":/res/MenuSceneStartButton.png");
     startBtn->setParent(this);
@@ -43,6 +47,10 @@ MainScene::MainScene(QWidget *parent) :
 
     connect(startBtn,&MyPushButton::clicked,[=](){
         //qDebug() << "点击了开始";
+        //播放开始音效
+        //startSound->setLoops(-1);  //-1代表无限循环
+        startSound->play();
+
         //做弹起特效
         startBtn->zoom1();
         startBtn->zoom2();

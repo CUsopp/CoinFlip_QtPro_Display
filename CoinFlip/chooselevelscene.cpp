@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QLabel>
+#include <QSound>
 
 ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 {
@@ -32,6 +33,11 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         this->close();
     });
 
+    //选择关卡按钮音效
+    QSound *chooseSound = new QSound(":/res/TapButtonSound.wav",this);
+    //返回按钮音效
+    QSound *backSound = new QSound(":/res/BackButtonSound.wav",this);
+
     //返回按钮
     MyPushButton * backBtn = new MyPushButton(":/res/BackButton.png" , ":/res/BackButtonSelected.png");
     backBtn->setParent(this);
@@ -39,6 +45,8 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 
     //点击返回
     connect(backBtn,&MyPushButton::clicked,[=](){
+        //点击返回按钮后，播放该音效
+        backSound->play();
         //qDebug() << "点击了返回按钮";
         //告诉主场景 我返回了，主场景监听ChooseLevelScene的返回按钮
         //延时返回
@@ -56,6 +64,9 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 
          //监听每个按钮的点击事件
          connect(menuBtn,&MyPushButton::clicked,[=](){
+             //选中关卡后，播放音效
+             chooseSound->play();
+
              QString str = QString("您选择的是第 %1 关 ").arg( i + 1);
              qDebug() <<str;
 
