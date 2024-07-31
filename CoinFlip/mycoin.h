@@ -25,6 +25,15 @@ public:
     int min=1;
     int max=8;
 
+    //执行动画的标志
+    bool isAnimation=false;
+
+    //重写按下和释放
+    void mousePressEvent(QMouseEvent *e);
+
+    //判断是否胜利
+    bool isWin=false;
+
 signals:
 
 public slots:
