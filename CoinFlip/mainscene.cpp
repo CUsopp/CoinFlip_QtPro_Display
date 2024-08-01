@@ -41,6 +41,7 @@ MainScene::MainScene(QWidget *parent) :
 
     //监听选择关卡的返回按钮的信号
     connect(chooseScene,&ChooseLevelScene::chooseSceneBack,this,[=](){
+        this->setGeometry(chooseScene->geometry());
         chooseScene->hide(); //将选择关卡场景 隐藏掉
         this->show(); //重新显示主场景
     });
@@ -58,6 +59,8 @@ MainScene::MainScene(QWidget *parent) :
 
         //延时进入到选择关卡场景中
         QTimer::singleShot(500,this,[=](){
+            //设置choosescene场景的位置
+            chooseScene->setGeometry(this->geometry());
             //自身隐藏
             this->hide();
             //显示选择关卡场景
